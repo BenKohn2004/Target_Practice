@@ -168,14 +168,14 @@ void timed_target() {
   display.println("Reaction");
   display.println("Time");
   display.display();
-  delay(4000);
+  delay(1000);
 
   display.setTextSize(4);
   display.setCursor(10, 20);
   display.clearDisplay();
   display.println(reaction_time);
   display.display();
-  delay(1000);
+  delay(4000);
 
   mode_state = 0;  // Resets the Mode State
 }
