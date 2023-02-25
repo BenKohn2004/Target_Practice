@@ -25,7 +25,7 @@ int mode_btnState = 0;
 
 ezButton target_button(12);  // D6 Detects when the weapon hits the target
 // const int target_button = 12;                   // D6 Detects when the weapon hits the target
-const int target_debounce_delay = 18;  // 18 ms for foil
+const int target_debounce_delay = 14;  // 18 ms for foil
 const int target_debounce_epee = 2;    // Epee Debounce time
 int target_btnState = 0;
 // unsigned long target_debounce_time = 0;  // The last time that the target button was toggled
