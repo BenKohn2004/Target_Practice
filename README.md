@@ -2,7 +2,7 @@
 
 A Ardunio based Wemos D1 Mini controller used to create a fencing target. The target takes input from the A,B and C lines from the fencing body cord and compares it to Digital Input signals from three Targets. The B Line is connected to the Analog Pin.
 
-The [enclosure](https://cad.onshape.com/documents/c0f35fa07750503116a4982c/w/df9ccf835c31fb7563f26bd6/e/0c82ad34fe834bd92dafb4dc) was created using Onshape and houses the Wemos, an OLED display and a momentary contact push button.
+The [enclosure](https://cad.onshape.com/documents/c0f35fa07750503116a4982c/w/df9ccf835c31fb7563f26bd6/e/0c82ad34fe834bd92dafb4dc) was created using Onshape and houses the [Wemos](https://www.amazon.com/Organizer-ESP8266-Internet-Development-Compatible/dp/B081PX9YFV/ref=sr_1_3?keywords=wemos+d1+mini&sr=8-3), an [OLED](https://www.amazon.com/Songhe-0-96-inch-I2C-Raspberry/dp/B085WCRS7C/ref=sr_1_5?keywords=oled+ssd1306&sr=8-5) display, a momentary contact push button [WS2812](ZW5jcnlwdGVkUXVhbGlmaWVyPUEyWkhIMEEySDNRRVY2JmVuY3J5cHRlZElkPUEwNzQ2NzA0TFQ2WjFEUk5MV0dUJmVuY3J5cHRlZEFkSWQ9QTAwMDA5NThWS0s4UUpSQTRMUU4md2lkZ2V0TmFtZT1zcF9zZWFyY2hfdGhlbWF0aWMmYWN0aW9uPWNsaWNrUmVkaXJlY3QmZG9Ob3RMb2dDbGljaz10cnVl) Individually Addressable LEDs.
 
 The electric schematic is described in [Schematic_Fencing_Target_Individually_Addresseable.pdf](Schematic_Fencing_Target_Individually_Addresseable.pdf).
 
