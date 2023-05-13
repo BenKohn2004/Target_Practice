@@ -99,7 +99,7 @@ bool B_Line_State = LOW;                // Establishes B_Line_State
 bool B_Line_State_Prev = LOW;           // Tracks Previous Value so that the button can actuate on falling or rising edge
 unsigned long int B_Line_Timer = 0;     // The Debounce Timer for the B Line
 unsigned long int B_Line_Debounce = 2;  // The Debounce time for the B Line, starts with Epee timing by default
-float analog_sensitivity = 0.9;         // The fraction of max voltage that will trigger a hit
+float analog_sensitivity = 0.8;         // The fraction of max voltage that will trigger a hit
 
 ////////////////
 //// C_Line ////
@@ -435,7 +435,7 @@ void iterate_mode() {
     DEBUG_PRINT("Saber");         // Prints the Weapon Mode
     display.setCursor(5, 15);     // Sets Display Cursor (x/128,y/64)
     display.println("Saber");     // Text to Display}
-    Target_Debounce = 0;          // Sets Target Debounce Time for Saber
+    Target_Debounce = 1;          // Sets Target Debounce Time for Saber
   } else if (weapon_mode == 3) {  // Displays that Foil_Classic is selected
     display.setTextSize(3);       // Sets the Text Size to 2
     DEBUG_PRINT("Foil Classic");  // Prints the Weapon Mode
@@ -467,7 +467,7 @@ void saber(int target_number) {
     Target_Timer = millis();                                   // Starts the Target Timer
   }
 
-  if (millis() >= (Target_Timer + Target_Debounce) && Target_State == LOW) {  // Checks the Debounce Timing to turn on the LED
+  if (millis() > (Target_Timer + Target_Debounce) && Target_State == LOW) {  // Checks the Debounce Timing to turn on the LED
     LED_Light_Flag = 1;                                                       // Turns on the LED Flag
   }
 
