@@ -1,12 +1,3 @@
-// Drawing
-// https://easyeda.com/editor#id=810d7a8253ef49e3b34a33310a44feb1|f42ff98ec78b4bc6b06aadce82c868db|db2cd0d309fe48bc865ad76dae367a53
-
-// TODO
-// X Create Flag to turn foil hit target on
-// O Look at Analog Values to make hits more reliable
-// X Extend the hit time for target practice mode
-
-
 //////////////////////
 //// Define Debug ////
 //////////////////////
@@ -70,8 +61,6 @@ bool LED_Light_Flag = 0;                   // Indicates when the light should to
 unsigned long int LED_Light_Delay = 2000;  // How long the LED Light will stay lit
 unsigned long int LED_Light_Timer = 0;     // Timer the LED Light
 
-// bool multi_light_flag = 0;                  // Flag to determine multiple or single LED lights during setup
-// bool multi_light = 0;                       // 0 is a single LED, 1 is multiple LEDs in a strip
 bool sleep_mode_flag_target = 1;            // Turns off the light when the foil has been activated for a set period of time
                                             // The variable has the _target added to the end so as not to conflict with a similar definition in Wire.h
 bool foil_on_target_hit_flag = 0;           // If foil hits on target, then the color will hit until the light resets
@@ -193,75 +182,6 @@ void setup() {
     FastLED.show();
   }
 
-  // ///////////////////
-  // //// Multi LED ////
-  // ///////////////////
-
-  // display.clearDisplay();             // Clears Display
-  // display.setTextSize(1);             // Sets Text Size
-  // display.setTextColor(WHITE);        // Sets Text Color
-  // display.setCursor(0, 10);           // Sets Display Cursor
-  // display.println("Single LED");      // Text to Display
-  // display.setCursor(0, 20);           // Sets Display Cursor
-  // display.println("...Short Press");  // Text to Display
-  // display.setCursor(0, 40);           // Sets Display Cursor
-  // display.println("LED String");      // Text to Display
-  // display.setCursor(0, 50);           // Sets Display Cursor
-  // display.println("...Long Press");   // Text to Display
-  // display.display();                  // Display previous input data
-
-  // while (multi_light_flag == 0) {                // Similar to Mode Button Press
-  //   yield();                                     // Prevent watchdog timer (WDT) soft reset
-  //   Mode_Button_State_Prev = Mode_Button_State;  // Stores the Mode State in the Previous State before updating
-  //   if (digitalRead(Mode_Button) == HIGH) {      // Tests if the Mode Button is Pressed. Pin is Pulled Down, so HIGH is the Button Pressed.
-  //     Mode_Button_State = LOW;
-  //   } else {
-  //     Mode_Button_State = HIGH;
-  //   }
-
-  //   if ((Mode_Button_State == LOW) && (Mode_Button_State_Prev == HIGH)) {  // Current Mode State is Pressed and Previous is unpressed, Falling Edge
-  //     Mode_Button_Timer = millis();                                        // Starts the Mode Button Timer
-  //   }
-
-  //   if ((millis() > (Mode_Button_Timer + Mode_Button_Debounce)) && (Mode_Button_State == LOW) && (Mode_Button_Flag == 0)) {
-  //     // Checks the Debounce Timing and the Mode Button is pressed
-  //     Mode_Button_Flag = 1;
-  //   }
-
-  //   if ((Mode_Button_State == HIGH) && (Mode_Button_State_Prev == LOW) && (Mode_Button_Flag == 1)) {  // Rising Edge after Debounce Check
-  //     if (millis() > (Mode_Button_Timer + long_button_press)) {                                       // Tests for Long Button Press on Rising Edge following Debounce
-  //       DEBUG_PRINTln("LED Lights have been set to Multiple LEDS.");
-  //       multi_light = 1;  // Sets Multi Light to Mulitple LED Lights.
-  //     } else {
-  //       DEBUG_PRINTln("There can be only one...LED Light.");
-  //       multi_light = 0;  // Sets Multi Light to 1 Light
-  //     }
-  //     DEBUG_PRINTln("Turning on LED Light Flag.");
-  //     LED_Light_Delay = millis() - Mode_Button_Timer;
-  //     multi_light_flag = 1;  // Sets the multi_light_flag to 1 so that the setup will continue
-  //     Mode_Button_Flag = 0;  // Resets the Mode Button Flag
-
-  //     display.clearDisplay();       // Clears Display
-  //     display.setTextSize(1);       // Sets Text Size
-  //     display.setTextColor(WHITE);  // Sets Text Color
-  //     if (multi_light == 0) {
-  //       display.setCursor(0, 5);          // Sets Display Cursor
-  //       display.println("There can be");  // Text to Display
-  //       display.setCursor(30, 25);        // Sets Display Cursor
-  //       display.println("only one");      // Text to Display
-  //       display.setCursor(60, 45);        // Sets Display Cursor
-  //       display.println("...LED");        // Text to Display
-  //     } else {
-  //       display.setCursor(0, 10);           // Sets Display Cursor
-  //       display.println("LED string....");  // Text to Display
-  //       display.setCursor(30, 30);          // Sets Display Cursor
-  //       display.println("Enabled.");        // Text to Display
-  //     }
-  //     display.display();  // Display previous input data
-  //     delay(2000);        // Allows time to read the message
-  //   }
-  // }
-
   iterate_mode();  // Iterates the Mode to start the Loop
 
   ////////////////////////
@@ -322,11 +242,6 @@ void loop() {
   }
 
   if (LED_Light_Flag == 1) {           // Turns on LED if LED Flag is on and sleep mode is not active
-    // if (multi_light == 0) {            // Uses a Single LED if One LED is selected
-    //   digitalWrite(LED_Lights, HIGH);  // Turns on the LED
-    //   LED_Light_Flag = 0;              //Sets the LED Flag to off
-    //   LED_Light_Timer = millis();      // Starts the timer for the LED Light
-    // } else {                           // Uses the Strip of LED if LED multiple LEDs is selected
       green_run = 1;
       if (sleep_mode_active == 1) {  // Effectively Sets the color of the LEDs to dark
         LED_arg = 3;
@@ -335,7 +250,6 @@ void loop() {
       } else {
         LED_arg = 0;
       }
-    // }
     Green_Sine_Up_and_Fade(LED_arg);
   }
 
@@ -626,10 +540,6 @@ void Red_Indication_to_Hit(int target_number) {
   //// Red Lights to Hit ////
   ///////////////////////////
 
-  // Target Number is for Saber, denoting which target is lit
-
-  // while (Serial.available() > 0) { Serial.read(); }  // Flush Serial Buffer
-
   // Glows Bright Red Originating from 3 locations
   if (weapon_mode != 2 || (weapon_mode == 2 && target_number + 1 != 1)) {  // For Saber, the only target is the one that is not lit
                                                                            // if (weapon_mode != 2 && target_number != 1) {  // For Saber, the only target is the one that is not lit
@@ -660,13 +570,10 @@ void Red_Indication_to_Hit(int target_number) {
   }
 
   fadeToBlackBy(leds, NUM_LEDS, fade_rate);  // Fades all LEDs to black gradually to give the impression of motion
-
   FastLED.show();
 }
 
 void Green_Sine_Up_and_Fade(int LED_Color) {
-
-  // while (Serial.available() > 0) { Serial.read(); }  // Flush Serial Buffer
 
   // Green Pulses and then goes out
   uint8_t sinBeat = beatsin8(int(bpm / 2), 0, 255, 0, 0);  //All LEDs, no phase shift, Uses uint_8
