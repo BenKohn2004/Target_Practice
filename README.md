@@ -6,7 +6,7 @@ The [enclosure](https://cad.onshape.com/documents/c0f35fa07750503116a4982c/w/df9
 
 The electric schematic is described in [Schematic_Fencing_Target_Individually_Addresseable.pdf](Schematic_Fencing_Target_Individually_Addresseable.pdf). It is powered from a 5V power supply. In this case I used the 5V from the WEMOS usb connection, but it is designed to use a dedicated 5V power source.
 
-The target has two modes. One mode signals a light when the target is hit, the other mode is a Reaction Time mode that signals the fencer to hit. In Reaction Time mode the signal is sent three time and the reaction times are averaged and displayed to the fencer in milliseconds. The weapon mode cycles through Epee, Foil, Saber and Foil Classic with a short button press of less than 1 second. The Reaction Time mode starts with a long press of the Mode button, greater than 1 second.
+The target has two modes. One mode signals a light when the target is hit, the other mode is a Reaction Time mode that signals the fencer to hit. In Reaction Time mode the signal is sent three times and the reaction times are averaged and displayed to the fencer in milliseconds. The weapon mode cycles through Epee, Foil, Saber and Foil Classic with a short button press of less than 1 second. The Reaction Time mode starts with a long press of the Mode button, greater than 1 second.
 
 Epee: Epee is designed so that it will light when the A and B lines close. The light will not illuminate if the controller senses that one of the targets was hit with the epee.
 
